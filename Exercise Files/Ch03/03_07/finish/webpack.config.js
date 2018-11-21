@@ -1,9 +1,9 @@
 var webpack = require("webpack");
 
 module.exports = {
-	entry: "./src/index.js",
+	entry: "/src/index.js",
 	output: {
-		path: "dist/assets",
+		path: "/Desktop/React Practice/Practice Files/dist/assets",
 		filename: "bundle.js",
 		publicPath: "assets"
 	},

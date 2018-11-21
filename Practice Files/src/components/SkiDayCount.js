@@ -1,8 +1,8 @@
 
 import '../stylesheets/ui.scss'
 import { IoIosRocket } from 'react-icons/io'
-import { IoMdSnow } from 'react-icons/io';
-import { IoIosCalendar } from 'react-icons/io';
+import { IoMdSnow } from 'react-icons/io'
+import { IoIosCalendar } from 'react-icons/io'
 
 const percentToDecimal = (decimal) => {
     return ((decimal * 100) + '%')
