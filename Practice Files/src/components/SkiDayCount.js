@@ -4,6 +4,7 @@ import { IoIosRocket } from 'react-icons/io'
 import { IoMdSnow } from 'react-icons/io'
 import { IoIosCalendar } from 'react-icons/io'
 
+
 const percentToDecimal = (decimal) => {
     return ((decimal * 100) + '%')
 }
@@ -12,8 +13,10 @@ const calcGoalProgress = (total,goal) => {
     return percentToDecimal(total/goal)
 }
 
-export const SkiDayCount = ({total, powder, backcountry, goal}) => (
-    <div className="ski-day-count">
+export const SkiDayCount = ({total=70, powder=20, backcountry=10, goal=100}) => (
+
+
+<div className="ski-day-count">
         <div className= "total-days">
             <span>{total}</span>
                 <IoIosCalendar />
@@ -36,3 +39,4 @@ export const SkiDayCount = ({total, powder, backcountry, goal}) => (
         </div>
     </div>
 )
+
