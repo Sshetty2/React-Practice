@@ -3,7 +3,7 @@ import '../stylesheets/ui.scss'
 import { IoIosRocket } from 'react-icons/io'
 import { IoMdSnow } from 'react-icons/io'
 import { IoIosCalendar } from 'react-icons/io'
-
+import { PropTypes } from 'react'
 
 const percentToDecimal = (decimal) => {
     return ((decimal * 100) + '%')
@@ -40,3 +40,11 @@ export const SkiDayCount = ({total=70, powder=20, backcountry=10, goal=100}) => 
     </div>
 )
 
+// SkiDayCount.propTypes = {
+//     total : PropTypes.number, 
+//     powder: PropTypes.number,
+//     backcountry: PropTypes.number,
+//     goal: PropTypes.number
+// }
+  
+  

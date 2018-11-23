@@ -1,6 +1,7 @@
 import { IoIosRocket } from 'react-icons/io'
 import { IoMdSnow } from 'react-icons/io'
 import { IoIosCalendar } from 'react-icons/io'
+import { PropTypes } from 'react'
 
 export const SkiDayRow = ({resort, date, powder, backcountry}) => (
     <tr>
@@ -19,3 +20,13 @@ export const SkiDayRow = ({resort, date, powder, backcountry}) => (
     </tr>
 
 )
+
+
+SkiDayRow.propTypes = {
+    date : PropTypes.instanceOf(Date).isRequired, 
+    powder: PropTypes.bool,
+    backcountry: PropTypes.bool,
+    resort: PropTypes.string
+}
+  
+  
