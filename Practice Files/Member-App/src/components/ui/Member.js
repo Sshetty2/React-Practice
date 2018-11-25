@@ -3,19 +3,39 @@ import { Component } from 'react'
 
 class Member extends Component {
 
-render() {
+	componentWillMount() {
+		this.style={
+			backgroundColor: 'gray'
+		}
+	}
 
-	const { name, thumbnail, email, admin, makeAdmin } = this.props
-    return (
-        <div className="member">
-        	<h1>{name} {(admin) ? <FaShield /> : null}</h1>
-        	<a onClick={makeAdmin}>Make Admin</a>
-        	<img src={thumbnail} alt="profile picture" />
-        	<p><a href={`mailto:${email}`}>{email}</a></p>
+	componentWillUpdate(x) {
+		this.style= {
+			backgroundColor: (x.admin) ? 'green' : 'purple'
+		}
+	}
 
-        </div>
-    )
-}
+	shouldComponentUpdate(x) {
+		return this.props.admin !== x.admin
+	}
+
+	render() {
+
+			const { name, thumbnail, email, admin, makeAdmin, removeAdmin } = this.props
+			return (
+				<div className="member" style={this.style}>
+					<h1>{name} {(admin) ? <FaShield /> : null}</h1>
+					{
+						(admin) ? 
+						<a onClick={() => removeAdmin(email)}>Remove Admin</a>:
+						<a onClick={() => makeAdmin(email)}>Make Admin</a>
+					}
+					<img src={thumbnail} alt="profile picture" />
+					<p><a href={`mailto:${email}`}>{email}</a></p>
+
+				</div>
+			)
+	}
 }
 
 export default Member
