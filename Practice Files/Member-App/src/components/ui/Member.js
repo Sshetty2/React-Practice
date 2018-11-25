@@ -1,4 +1,4 @@
-import MdSecurity from "react-icons/md";
+import FaShield from 'react-icons/lib/fa/shield' 
 import { Component } from 'react'
 
 class Member extends Component {
