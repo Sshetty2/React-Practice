@@ -11,8 +11,43 @@ const initialState = {
   slicesPerPerson: 2,
 };
 
-export default class Application extends Component {
-  state = { ...initialState };
+class PizzaCalculator extends Component {
+  render(){
+    const {numberOfPeople, updateNumberOfPeople, slicesPerPerson, updateSlicesPerPerson, numberOfPizzas, reset} = this.props
+    return (
+      <div className="Application">
+        <Title />
+        <Input
+          label="Number of Guests"
+          type="number"
+          min={0}
+          value={numberOfPeople}
+          onChange={updateNumberOfPeople}
+        />
+        <Input
+          label="Slices Per Person"
+          type="number"
+          min={0}
+          value={slicesPerPerson}
+          onChange={updateSlicesPerPerson}
+        />
+        <Result amount={numberOfPizzas} />
+        <button className="full-width" onClick={reset}>
+          Reset
+        </button>
+      </div>
+    );
+
+  }
+}
+
+
+const WithPizzaCalculations = WrappedComponent => {
+  // const Container = class extends Component {
+  return class extends Component {
+    static displayName = `WithPizzaCalculations(${WrappedComponent.displayName || WrappedComponent.name})`
+
+    state = { ...initialState };
 
   updateNumberOfPeople = event => {
     const numberOfPeople = parseInt(event.target.value, 10);
@@ -34,29 +69,29 @@ export default class Application extends Component {
       numberOfPeople,
       slicesPerPerson,
     );
-
     return (
-      <div className="Application">
-        <Title />
-        <Input
-          label="Number of Guests"
-          type="number"
-          min={0}
-          value={numberOfPeople}
-          onChange={this.updateNumberOfPeople}
-        />
-        <Input
-          label="Slices Per Person"
-          type="number"
-          min={0}
-          value={slicesPerPerson}
-          onChange={this.updateSlicesPerPerson}
-        />
-        <Result amount={numberOfPizzas} />
-        <button className="full-width" onClick={this.reset}>
-          Reset
-        </button>
-      </div>
-    );
+      <WrappedComponent 
+      numberOfPeople = {numberOfPeople}
+      updateNumberOfPeople = {this.updateNumberOfPeople}
+      slicesPerPerson = {slicesPerPerson}
+      updateSlicesPerPerson = {this.updateSlicesPerPerson}
+      numberOfPizzas = {numberOfPizzas}
+      reset= {this.reset}
+      />
+    )
+  }
+
+  }
+  // Container.displayName = `WithPizzaCalculations(${WrappedComponent.displayName || WrappedComponent.name})`
+  // return Container;
+
+}
+
+const PizzaContainer = WithPizzaCalculations(PizzaCalculator)
+
+
+export default class Application extends Component {
+  render() {
+    return <PizzaContainer />;
   }
 }
